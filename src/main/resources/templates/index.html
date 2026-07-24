@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PagePulse</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#F7F5EF] text-gray-900 min-h-screen flex flex-col">
+
+<main class="flex-1 flex items-center justify-center px-6">
+
+    <div class="w-full max-w-2xl">
+
+        <div class="border border-stone-300 bg-white rounded-lg shadow-md p-8">
+
+            <div class="flex items-center gap-3 mb-8">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-8 h-8 text-[#486A28]"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M14 3v5h5"/>
+
+                    <circle cx="16.5" cy="16.5" r="2"/>
+
+                    <path stroke-linecap="round"
+                          d="M18 18l2.5 2.5"/>
+
+                </svg>
+
+                <div>
+
+                    <h1 class="text-3xl font-bold">
+                        PagePulse
+                    </h1>
+
+                    <p class="text-sm text-gray-500">
+                        Generate a page audit report.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <form
+                    id="auditForm"
+                    action="/audit"
+                    method="post"
+                    class="space-y-5">
+
+                <div>
+
+                    <label class="block text-sm font-medium mb-2">
+                        Website URL
+                    </label>
+
+                    <input
+                            type="text"
+                            name="url"
+                            required
+                            placeholder="google.com"
+
+                            class="w-full
+                                   rounded-lg
+                                   border border-stone-300
+                                   px-4 py-3
+                                   focus:outline-none
+                                   focus:ring-2
+                                   focus:ring-[#486A28]
+                                   focus:border-[#486A28]">
+
+                </div>
+
+                <div
+                        th:if="${error}"
+                        class="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+
+                    <span th:text="${error}"></span>
+
+                </div>
+
+                <button
+                        id="submitButton"
+                        type="submit"
+
+                        class="rounded-lg
+                               bg-[#486A28]
+                               hover:bg-[#3D5C22]
+                               disabled:bg-[#486A28]
+                               disabled:opacity-60
+                               disabled:cursor-not-allowed
+                               text-white
+                               px-5
+                               py-3
+                               font-medium
+                               transition">
+
+                    Generate Report
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="border-t border-stone-300 py-5">
+
+    <div class="max-w-6xl mx-auto px-6 flex justify-between text-sm text-gray-500">
+
+        <div>
+
+            Built for
+
+            <a
+                    href="https://digitalheroesco.com"
+                    target="_blank"
+                    class="text-[#486A28] hover:underline">
+
+                Digital Heroes Training Task
+
+            </a>
+
+        </div>
+
+        <div>
+
+            Spring Boot · Thymeleaf · Jsoup
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+    const form = document.getElementById("auditForm");
+    const button = document.getElementById("submitButton");
+
+    form.addEventListener("submit", () => {
+
+        button.disabled = true;
+        button.innerText = "Generating Report...";
+
+    });
+
+</script>
+
+</body>
+
+</html>

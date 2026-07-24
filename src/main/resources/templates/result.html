@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>PagePulse</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-[#F7F5EF] text-gray-900 min-h-screen flex flex-col">
+
+<main class="flex-1 py-10 px-6">
+
+    <div class="max-w-5xl mx-auto">
+
+        <div class="flex justify-between items-center mb-8">
+
+            <div>
+
+                <h1 class="text-3xl font-bold">
+
+                    Page Audit Report
+
+                </h1>
+
+                <p class="text-gray-500">
+
+                    Summary of the analyzed webpage.
+
+                </p>
+
+            </div>
+
+            <a
+                    href="/"
+
+                    class="rounded-lg
+                           border border-stone-300
+                           px-4
+                           py-2
+                           hover:bg-stone-100">
+
+                New Audit
+
+            </a>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+
+            <div class="border border-stone-300 rounded-lg bg-white p-5">
+
+                <p class="text-sm text-gray-500">HTTP Status</p>
+
+                <h2 class="mt-2 text-3xl font-bold text-[#486A28]"
+                    th:text="${response.httpStatus}"></h2>
+
+            </div>
+
+            <div class="border border-stone-300 rounded-lg bg-white p-5">
+
+                <p class="text-sm text-gray-500">Response Time</p>
+
+                <h2 class="mt-2 text-3xl font-bold text-[#486A28]">
+
+                    <span th:text="${response.responseTime}"></span> ms
+
+                </h2>
+
+            </div>
+
+            <div class="border border-stone-300 rounded-lg bg-white p-5">
+
+                <p class="text-sm text-gray-500">H1 Count</p>
+
+                <h2 class="mt-2 text-3xl font-bold text-[#486A28]"
+                    th:text="${response.h1Count}"></h2>
+
+            </div>
+
+            <div class="border border-stone-300 rounded-lg bg-white p-5">
+
+                <p class="text-sm text-gray-500">
+
+                    Images Missing Alt Text
+
+                </p>
+
+                <h2 class="mt-2 text-3xl font-bold text-[#486A28]"
+                    th:text="${response.missingAltImages}"></h2>
+
+            </div>
+
+        </div>
+
+        <div class="border border-stone-300 rounded-lg bg-white">
+
+            <div class="divide-y divide-stone-200">
+
+                <div class="grid md:grid-cols-4 p-5">
+
+                    <div class="font-medium text-gray-600">
+
+                        URL
+
+                    </div>
+
+                    <div class="md:col-span-3 break-all">
+
+                        <a
+                                th:href="${response.url}"
+                                th:text="${response.url}"
+                                target="_blank"
+                                class="text-[#486A28] hover:underline">
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="grid md:grid-cols-4 p-5">
+
+                    <div class="font-medium text-gray-600">
+
+                        Page Title
+
+                    </div>
+
+                    <div class="md:col-span-3">
+
+                        <span
+                                th:if="${response.pageTitle != null && !response.pageTitle.isBlank()}"
+                                th:text="${response.pageTitle}">
+                        </span>
+
+                        <span
+                                th:unless="${response.pageTitle != null && !response.pageTitle.isBlank()}"
+                                class="italic text-gray-400">
+
+                            Not Available
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="grid md:grid-cols-4 p-5">
+
+                    <div class="font-medium text-gray-600">
+
+                        Meta Description
+
+                    </div>
+
+                    <div class="md:col-span-3">
+
+                        <span
+                                th:if="${response.metaDescription != null && !response.metaDescription.isBlank()}"
+                                th:text="${response.metaDescription}">
+                        </span>
+
+                        <span
+                                th:unless="${response.metaDescription != null && !response.metaDescription.isBlank()}"
+                                class="italic text-gray-400">
+
+                            Not Available
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="grid md:grid-cols-4 p-5">
+
+                    <div class="font-medium text-gray-600">
+
+                        Approximate Word Count
+
+                    </div>
+
+                    <div class="md:col-span-3 font-semibold"
+                         th:text="${response.approximateWordCount}"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="border-t border-stone-300 py-5">
+
+    <div class="max-w-6xl mx-auto px-6 flex justify-between text-sm text-gray-500">
+
+        <div>
+
+            Built for
+
+            <a
+                    href="https://digitalheroesco.com"
+                    target="_blank"
+                    class="text-[#486A28] hover:underline">
+
+                Digital Heroes Training Task
+
+            </a>
+
+        </div>
+
+        <div>
+
+            Spring Boot · Thymeleaf · Jsoup
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
