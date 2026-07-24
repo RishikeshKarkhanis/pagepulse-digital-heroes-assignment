@@ -167,16 +167,19 @@ Run the tests using:
 ## Design Decisions
 
 ### 1. Spring Boot with Thymeleaf
+I chose Spring Boot with Thymeleaf because the assignment required a single web application. Server-side rendering kept the architecture simple, reduced complexity, and avoided maintaining separate frontend and backend applications.
 
-I chose Spring Boot with Thymeleaf because the assignment required only a single web application. Using server-side rendering kept the project simple and avoided maintaining separate frontend and backend applications.
+### 2. Service-Oriented Architecture
+The application separates responsibilities between the controller and the service layer. The controller handles HTTP requests and responses, while the `AuditService` encapsulates the webpage fetching and analysis logic, making the code easier to maintain and test.
 
-### 2. Jsoup
+### 3. DTO-Based Data Transfer
+Audit results are returned using a dedicated `AuditResultDto` instead of exposing internal objects directly. This provides a clean contract between the service layer and the presentation layer and makes future extensions simpler.
 
-Jsoup was used to fetch webpages and parse HTML. It provides a straightforward way to extract elements such as the page title, meta description, headings, images, and page content.
+### 4. Jsoup for HTML Parsing
+Jsoup was used to retrieve webpages and parse their HTML content. Its DOM-like API makes extracting titles, metadata, headings, images, and page text straightforward while keeping the implementation lightweight.
 
-### 3. Global Exception Handling
-
-Instead of handling exceptions inside controller methods, I used a centralized `GlobalExceptionHandler`. This keeps the controller focused on request handling while ensuring users receive clear error messages for different failure scenarios.
+### 5. Centralized Exception Handling
+Rather than handling exceptions inside controller methods, a `GlobalExceptionHandler` was used to centralize error handling. This keeps controllers focused on request processing while providing users with consistent and meaningful error messages.
 
 ---
 
