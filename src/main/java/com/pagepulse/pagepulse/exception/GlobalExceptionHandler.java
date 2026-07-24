@@ -25,12 +25,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UncheckedIOException.class)
     public String handleIOException(UncheckedIOException ex, Model model) {
 
+        // Traverse the exception chain to identify the underlying network failure.
         Throwable t = ex;
 
         while (t != null) {
-
-            System.out.println(t.getClass().getName());
-            System.out.println(t.getMessage());
 
             if (t instanceof SocketTimeoutException
                     || t instanceof HttpTimeoutException) {
