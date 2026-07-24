@@ -220,7 +220,7 @@ AI tools (ChatGPT) were used during the development of this project to discuss s
 
 ## Live Demo
 
-https://<your-render-url>
+https://pagepulse-digital-heroes-assignment.onrender.com/
 
 ---
 
