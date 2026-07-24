@@ -173,7 +173,7 @@ I chose Spring Boot with Thymeleaf because the assignment required a single web 
 The application separates responsibilities between the controller and the service layer. The controller handles HTTP requests and responses, while the `AuditService` encapsulates the webpage fetching and analysis logic, making the code easier to maintain and test.
 
 ### 3. DTO-Based Data Transfer
-Audit results are returned using a dedicated `AuditResultDto` instead of exposing internal objects directly. This provides a clean contract between the service layer and the presentation layer and makes future extensions simpler.
+Audit results are returned using a dedicated `AuditResponseDto` instead of exposing internal objects directly. This provides a clean contract between the service layer and the presentation layer and makes future extensions simpler.
 
 ### 4. Jsoup for HTML Parsing
 Jsoup was used to retrieve webpages and parse their HTML content. Its DOM-like API makes extracting titles, metadata, headings, images, and page text straightforward while keeping the implementation lightweight.
